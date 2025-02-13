@@ -11,7 +11,11 @@ public class GameManager : Singleton<GameManager>
     public Action OnFail;
     public Action OnNextLevel;
     public Action OnRestartLevel;
-    
+
+    private void Awake()
+    {
+        Application.targetFrameRate = 30;
+    }
 
     private void Start()
     {

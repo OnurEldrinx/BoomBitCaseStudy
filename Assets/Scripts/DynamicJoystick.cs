@@ -2,8 +2,8 @@ using UnityEngine;
 using UnityEngine.InputSystem.OnScreen;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-using TouchPhase = UnityEngine.TouchPhase;
+using UnityEngine.InputSystem.LowLevel;
+using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 
 public class DynamicJoystick : OnScreenStick, IPointerUpHandler
 {
@@ -14,7 +14,6 @@ public class DynamicJoystick : OnScreenStick, IPointerUpHandler
     private Image _stickImage;
     private Image _outerCircleImage;
     private bool _active;
-    
     #endregion
 
     #region Serialized Fields
@@ -23,6 +22,7 @@ public class DynamicJoystick : OnScreenStick, IPointerUpHandler
 
     #endregion
 
+    public TouchState TouchState;
     
     private void Awake()
     {
@@ -34,13 +34,11 @@ public class DynamicJoystick : OnScreenStick, IPointerUpHandler
 
     private void Update()
     {
-        if (_active || Input.touchCount <= 0) return;
+        if (_active) return;
         
-        var touch = Input.GetTouch(0);
+        if (TouchState.phase != TouchPhase.Began) return;
         
-        if (touch.phase != TouchPhase.Began) return;
-        
-        MoveStick(touch.position);
+        MoveStick(TouchState.position);
         SetVisibility(1);
         _active = true;
     }
@@ -66,12 +64,5 @@ public class DynamicJoystick : OnScreenStick, IPointerUpHandler
         _active = false;
     }
 
-    #region INPUT 
     
-    public void OnTouch(InputValue value)
-    {
-        //print("Touch");
-    }
-    
-    #endregion
 }
