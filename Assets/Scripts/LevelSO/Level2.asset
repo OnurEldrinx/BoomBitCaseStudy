@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e84377828421ed042ba2c395d469bc9f, type: 3}
+  m_Name: Level2
+  m_EditorClassIdentifier: 
+  levelID: 2
+  enemyType: {fileID: 11400000, guid: 39b6d748faf5065439283ea490df0847, type: 2}
+  waveCountTable:
+    _serializedList:
+    - Key: 0
+      Value: 15
+    - Key: 1
+      Value: 30
+    - Key: 2
+      Value: 45
+  timeBetweenWaves: 10
